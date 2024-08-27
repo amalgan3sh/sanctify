@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'modules_screen.dart'; // Import the modules screen
 
 class LandingScreen extends StatelessWidget {
   @override
@@ -7,7 +8,7 @@ class LandingScreen extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images/image.webp'), // Add a background image
+            image: AssetImage('images/image.webp'), // Use the new image
             fit: BoxFit.cover,
           ),
         ),
@@ -18,6 +19,8 @@ class LandingScreen extends StatelessWidget {
               Text(
                 'Sanctify',
                 style: TextStyle(
+                  fontFamily:
+                      'Lora', // Assuming you have set up the custom font as discussed earlier
                   fontSize: 48,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -26,7 +29,10 @@ class LandingScreen extends StatelessWidget {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  // Navigate to another screen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ModulesScreen()),
+                  );
                 },
                 child: Text('Get Started'),
                 style: ElevatedButton.styleFrom(
