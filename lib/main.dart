@@ -14,7 +14,7 @@ class SanctifyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LandingScreen(),
+      home: LandingPage(),
     );
   }
 }
