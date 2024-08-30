@@ -1,3 +1,2 @@
 [build]
-  command = "git clone --filter=blob:none https://github.com/amalgan3sh/sanctify && cd sanctify && flutter build web"
   publish = "sanctify/build/web"
