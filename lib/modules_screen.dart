@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ModulesScreen extends StatelessWidget {
   @override
@@ -35,9 +36,10 @@ class ModulesScreen extends StatelessWidget {
                   Text(
                     'Announcements',
                     style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                   ),
                   SizedBox(height: 10),
                   Container(
@@ -57,9 +59,10 @@ class ModulesScreen extends StatelessWidget {
                               Text(
                                 "Today's Verse",
                                 style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
                               ),
                               SizedBox(height: 8),
                               Text(
@@ -85,12 +88,16 @@ class ModulesScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(width: 10),
+                        SizedBox(width: 10),
+                        SizedBox(width: 10),
                         ClipRRect(
                           borderRadius: BorderRadius.circular(10),
-                          child: Icon(
-                            Icons.book,
+                          child: FaIcon(
+                            FontAwesomeIcons
+                                .prayingHands, // Font Awesome praying hands icon
                             size: 96,
-                            color: Colors.black87,
+                            color: Colors
+                                .deepOrangeAccent, // Set the color you want
                           ),
                         ),
                       ],
@@ -150,107 +157,71 @@ class ModulesScreen extends StatelessWidget {
                   Text(
                     'Upcoming events',
                     style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                   ),
                   SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Color(0xFFfff5e3),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          padding: EdgeInsets.all(16),
-                          child: Row(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: Icon(
-                                  Icons.event,
-                                  size: 80,
-                                  color: Colors.black87,
-                                ),
+                  Container(
+                    height: 250, // Set a fixed height
+                    child: PageView.builder(
+                      controller: PageController(viewportFraction: 0.8),
+                      itemCount: events.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Transform.translate(
+                            offset: Offset(-20, 0),
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
                               ),
-                              SizedBox(width: 10),
-                              Expanded(
+                              elevation: 5,
+                              color: Color(0xFFfff5e3),
+                              child: Padding(
+                                padding: const EdgeInsets.all(16.0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      'Harvest Festival & Community Celebration',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black87),
+                                    Icon(
+                                      Icons.event,
+                                      size: 48,
+                                      color: Colors.black87,
                                     ),
-                                    SizedBox(height: 5),
+                                    SizedBox(height: 10),
                                     Text(
-                                      'Sunday, October 15, 2024',
+                                      events[index]['title'],
                                       style: TextStyle(
-                                          fontSize: 12, color: Colors.black87),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black87,
+                                      ),
+                                    ),
+                                    SizedBox(height: 10),
+                                    Text(
+                                      events[index]['date'],
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.black87,
+                                      ),
                                     ),
                                     Text(
-                                      '10:00 AM - 3:00 PM',
+                                      events[index]['time'],
                                       style: TextStyle(
-                                          fontSize: 12, color: Colors.black87),
+                                        fontSize: 12,
+                                        color: Colors.black87,
+                                      ),
                                     ),
                                   ],
                                 ),
                               ),
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Color(0xFFfff5e3),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          padding: EdgeInsets.all(16),
-                          child: Row(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: Icon(
-                                  Icons.event,
-                                  size: 80,
-                                  color: Colors.black87,
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Harvest Festival & Community Celebration',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black87),
-                                    ),
-                                    SizedBox(height: 5),
-                                    Text(
-                                      'Sunday, October 15, 2024',
-                                      style: TextStyle(
-                                          fontSize: 12, color: Colors.black87),
-                                    ),
-                                    Text(
-                                      '10:00 AM - 3:00 PM',
-                                      style: TextStyle(
-                                          fontSize: 12, color: Colors.black87),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -258,7 +229,6 @@ class ModulesScreen extends StatelessWidget {
           ],
         ),
       ),
-      // Bottom Navigation Bar
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Color(0xFF93741b),
         selectedItemColor: Colors.white,
@@ -317,6 +287,19 @@ class ModulesScreen extends StatelessWidget {
     {
       'name': 'Announcements',
       'icon': Icons.announcement,
+    },
+  ];
+
+  final List<Map<String, dynamic>> events = [
+    {
+      'title': 'Harvest Festival & Community Celebration',
+      'date': 'Sunday, October 15, 2024',
+      'time': '10:00 AM - 3:00 PM',
+    },
+    {
+      'title': 'Thanksgiving Dinner & Prayer Service',
+      'date': 'Sunday, November 25, 2024',
+      'time': '5:00 PM - 9:00 PM',
     },
   ];
 }
