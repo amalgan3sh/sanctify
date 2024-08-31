@@ -1,5 +1,17 @@
 import 'package:flutter/material.dart';
+import 'screens/vicar_message_screen.dart';
+import 'screens/bishop_and_vicar_screen.dart';
+import 'screens/worship_screen.dart';
+import 'screens/organization_screen.dart';
+import 'screens/publication_screen.dart';
+import 'screens/parish_directory_screen.dart';
+import 'screens/gallery_screen.dart';
+import 'screens/office_bearers_screen.dart';
+import 'screens/announcements_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'nav/bottom_navbar.dart';
+
+// Import other screens here
 
 class ModulesScreen extends StatelessWidget {
   @override
@@ -88,8 +100,6 @@ class ModulesScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(width: 10),
-                        SizedBox(width: 10),
-                        SizedBox(width: 10),
                         ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: FaIcon(
@@ -120,30 +130,99 @@ class ModulesScreen extends StatelessWidget {
                 ),
                 itemCount: modules.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: Color(0xFFfdf4d3),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    padding: EdgeInsets.all(16),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          modules[index]['icon'],
-                          size: 32,
-                          color: Colors.black87,
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          modules[index]['name'],
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 14,
+                  return GestureDetector(
+                    onTap: () {
+                      switch (modules[index]['name']) {
+                        case 'Vicar Message':
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => VicarMessageScreen()),
+                          );
+                          break;
+                        case 'Bishop & Vicar':
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BishopAndVicarScreen()),
+                          );
+                          break;
+                        case 'Worship':
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => WorshipScreen()),
+                          );
+                          break;
+                        case 'Organization':
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => OrganizationScreen()),
+                          );
+                          break;
+                        case 'Publication':
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PublicationScreen()),
+                          );
+                          break;
+                        case 'Parish Directory':
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ParishDirectoryScreen()),
+                          );
+                          break;
+                        case 'Gallery':
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => GalleryScreen()),
+                          );
+                          break;
+                        case 'Office Bearers':
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => OfficeBearersScreen()),
+                          );
+                          break;
+                        case 'Announcements':
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AnnouncementsScreen()),
+                          );
+                          break;
+                      }
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xFFfdf4d3),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      padding: EdgeInsets.all(16),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            modules[index]['icon'],
+                            size: 32,
                             color: Colors.black87,
                           ),
-                        ),
-                      ],
+                          SizedBox(height: 10),
+                          Text(
+                            modules[index]['name'],
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.black87,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -229,25 +308,7 @@ class ModulesScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xFF93741b),
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat_bubble_outline),
-            label: 'Community',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.monetization_on_outlined),
-            label: 'Donation',
-          ),
-        ],
-      ),
+      bottomNavigationBar: CommonBottomNavBar(currentIndex: 0), // 0 for Home
     );
   }
 
@@ -288,6 +349,7 @@ class ModulesScreen extends StatelessWidget {
       'name': 'Announcements',
       'icon': Icons.announcement,
     },
+    // Add other modules here
   ];
 
   final List<Map<String, dynamic>> events = [
