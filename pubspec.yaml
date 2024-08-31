@@ -14,6 +14,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  url_launcher: ^6.0.20
 
   # Adds Cupertino icons for iOS styling
   cupertino_icons: ^1.0.8
@@ -33,6 +34,7 @@ flutter:
 
   assets:
     - assets/images/
+
 
   # To add custom fonts to your application, uncomment and configure the following:
   # fonts:
